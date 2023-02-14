@@ -1,12 +1,12 @@
 import argparse
+import random
+import string
 
 
 def read_user_cli_args():
     """ """
 
-    parser = argparse.ArgumentParser(
-        description="Generates a random password."
-    )
+    parser = argparse.ArgumentParser(description="Generates a random password.")
 
     parser.add_argument(
         "lenght",
@@ -37,6 +37,13 @@ def read_user_cli_args():
     return parser.parse_args()
 
 
+def get_random_string(lenght):
+    letters = string.ascii_lowercase
+    result = "".join(random.choice(letters) for i in range(lenght))
+    return result
+
+
 if __name__ == "__main__":
     user_args = read_user_cli_args()
-    print(user_args.lenght, user_args.upper, user_args.numbers, user_args.special)
+    p_lenght = get_random_string(user_args.lenght)
+    print(p_lenght)
